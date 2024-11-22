@@ -55,8 +55,8 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         setIsSidebarOpen={setIsSidebarOpen}
       />
 
-      <main className="dashboard_layout p-5 md:p-10 md:ml-48">
-        <div className="bg-white rounded shadow p-6">{children}</div>
+      <main className="dashboard_layout p-2 md:p-10 md:ml-48">
+        <div className="bg-white rounded shadow p-2 md:p-6">{children}</div>
       </main>
     </div>
   );

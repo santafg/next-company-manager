@@ -23,6 +23,7 @@ const Users = () => {
 
   return (
     <div>
+      <h1 className="mb-4 text-xl">Users</h1>
       <UserTable
         users={users}
         handleUpdate={handleUpdate}
