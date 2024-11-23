@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import React, { Dispatch, SetStateAction } from "react";
 
 const navItems = [
-  { name: "Home", route: "/" },
+  { name: "Home", route: "/home" },
   { name: "Users", route: "/users" },
   { name: "Companies", route: "/companies" },
   { name: "Reset", route: "/reset" },
@@ -11,7 +11,7 @@ const navItems = [
 
 const Sidebar = ({
   setIsSidebarOpen,
-  isSidebarOpen
+  isSidebarOpen,
 }: {
   isSidebarOpen: boolean;
   setIsSidebarOpen?: Dispatch<SetStateAction<boolean>>;
@@ -39,7 +39,7 @@ const Sidebar = ({
               <Link
                 href={item.route}
                 className={`block px-4 py-2 rounded ${
-                  pathname === item.route
+                  pathname.startsWith(item.route)
                     ? "bg-slate-800"
                     : "hover:bg-slate-700"
                 }`}

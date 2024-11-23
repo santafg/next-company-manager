@@ -1,5 +1,5 @@
 export interface ICompany {
-  createdAt: string;
+  createdAt?: string;
   companyName: string;
   logo: string;
   email: string;

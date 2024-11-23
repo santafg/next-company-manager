@@ -1,7 +1,6 @@
 import { IUser } from "@/ts/interfaces/user.interface";
 import Image from "next/image";
 import React from "react";
-// import { FallbackImage } from "../image/FallbackImage";
 
 interface IUserTableProps {
   users: IUser[] | null;

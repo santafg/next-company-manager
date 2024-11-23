@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import QueryWrapper from "@/components/wrappers/QueryWrapper";
 import ReduxWrapper from "@/components/wrappers/ReduxWrapper";
-import AppWrapper from "@/components/wrappers/AppWrapper";
 import ToastWrapper from "@/components/wrappers/ToastWrapper";
 import EventWrapper from "@/components/wrappers/EventWrapper";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Company Manager",
@@ -19,13 +18,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body>
         <ReduxWrapper>
           <QueryWrapper>
             <ToastWrapper>
-              <EventWrapper>
-                <AppWrapper>{children}</AppWrapper>
-              </EventWrapper>
+              <EventWrapper>{children}</EventWrapper>
             </ToastWrapper>
           </QueryWrapper>
         </ReduxWrapper>

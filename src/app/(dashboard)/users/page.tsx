@@ -1,35 +1,46 @@
 "use client";
+import DeleteModal from "@/components/modals/DeleteModal";
 import UserTable from "@/components/tables/UserTable";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { deleteUser } from "@/redux/slices/user.slice";
 import { IUser } from "@/ts/interfaces/user.interface";
+import { toastSucess } from "@/utils/functions/helper";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Users = () => {
   const { users } = useAppSelector((s) => s.user);
   const [selectedUser, setSelectedUser] = useState<IUser | null>();
-  console.log("users", users);
-  console.log("selectedUser", selectedUser);
-
+  const dispatch = useAppDispatch();
   const router = useRouter();
-
-  const handleUpdate = (user: IUser) => {
-    router.push(`/users/update/${user.id}`);
-  };
-
-  const openDelete = (user: IUser) => {
-    setSelectedUser(user);
+  const handleDeleteUser = () => {
+    if (selectedUser) {
+      dispatch(deleteUser(selectedUser.id));
+      toastSucess(`${selectedUser.name} Deleted`);
+      setSelectedUser(null);
+    }
   };
 
   return (
-    <div>
-      <h1 className="mb-4 text-xl">Users</h1>
-      <UserTable
-        users={users}
-        handleUpdate={handleUpdate}
-        openDelete={openDelete}
+    <>
+      <DeleteModal
+        selectedUser={selectedUser}
+        deleteFun={handleDeleteUser}
+        onClose={() => setSelectedUser(null)}
       />
-    </div>
+      <div>
+        <h1 className="mb-4 text-xl">Users</h1>
+        <UserTable
+          users={users}
+          handleUpdate={(user: IUser) => {
+            router.push(`/users/update/${user.id}`);
+          }}
+          openDelete={(user: IUser) => {
+            setSelectedUser(user);
+          }}
+        />
+      </div>
+    </>
   );
 };
 

@@ -20,12 +20,11 @@ const companiesSlice = createSlice({
       state.companies?.unshift(action.payload);
     },
     updateCompany(state, action: PayloadAction<ICompany>) {
-      const index = state.companies?.findIndex(
-        (company) => company.id === action.payload.id
-      );
-      if (index && state.companies && index !== -1) {
-        state.companies[index] = action.payload;
-      }
+      state.companies = state.companies
+        ? state.companies?.map((company) =>
+            company.id === action.payload.id ? { ...action.payload } : company
+          )
+        : [];
     },
     deleteCompany(state, action: PayloadAction<string>) {
       state.companies = state.companies

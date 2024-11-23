@@ -20,12 +20,11 @@ const usersSlice = createSlice({
       state.users?.unshift(action.payload);
     },
     updateUser(state, action: PayloadAction<IUser>) {
-      const index = state.users?.findIndex(
-        (user) => user.id === action.payload.id
-      );
-      if (index && index !== -1 && state.users) {
-        state.users[index] = action.payload;
-      }
+      state.users = state.users
+        ? state.users?.map((user) =>
+            user.id === action.payload.id ? { ...action.payload } : user
+          )
+        : [];
     },
     deleteUser(state, action: PayloadAction<string>) {
       state.users = state.users
