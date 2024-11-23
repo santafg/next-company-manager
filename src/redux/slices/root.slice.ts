@@ -11,7 +11,7 @@ const combine = combineReducers({
 });
 
 const persistConfig = {
-  key: "root",
+  key: "ncm",
   storage: storage,
   whitelist: ["user", "company"],
   // debug: true,
