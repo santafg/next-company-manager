@@ -17,9 +17,13 @@ export const companyValidationSchema = yup.object({
     .typeError("GST number must be a valid number")
     .integer("GST number must be an integer")
     .required("GST number is required"),
-  totalUnpaidBooking: yup.string().required("Total unpaid booking is required"),
+  totalUnpaidBooking: yup
+    .string()
+    .matches(/^[0-9]*\.?[0-9]*$/, "Only numbers allowed")
+    .required("Total unpaid booking is required"),
   availableCreditLimit: yup
     .number()
+    .typeError("Available credit is required")
     .min(0, "Available credit limit must be at least 0")
     .required("Available credit limit is required"),
 });

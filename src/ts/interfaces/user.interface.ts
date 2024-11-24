@@ -9,5 +9,5 @@ export interface IUser {
   totalUnpaidBooking: string;
   availableLimit: number;
   id: string;
-  companyId: string;
+  companyId?: string;
 }

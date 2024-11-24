@@ -3,6 +3,7 @@ import DeleteModal from "@/components/modals/DeleteModal";
 import CompanyTable from "@/components/tables/CompanyTable";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { deleteCompany } from "@/redux/slices/company.slice";
+import { updateUsersCompanyId } from "@/redux/slices/user.slice";
 import { ICompany } from "@/ts/interfaces/company.interfaces";
 import { toastSucess } from "@/utils/functions/helper";
 import { useRouter } from "next/navigation";
@@ -10,10 +11,8 @@ import React, { useState } from "react";
 
 const Companies = () => {
   const { companies } = useAppSelector((s) => s.company);
-  console.log("companies", companies);
 
   const [selectedCompany, setSelectedCompany] = useState<ICompany | null>();
-  console.log("selectedCompany", selectedCompany);
 
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -21,7 +20,8 @@ const Companies = () => {
   const handleDeleteCompany = () => {
     if (selectedCompany) {
       dispatch(deleteCompany(selectedCompany.id));
-      toastSucess(`${selectedCompany.companyName} Deleted`);
+      dispatch(updateUsersCompanyId(selectedCompany.id));
+      toastSucess(`Company ${selectedCompany.companyName} Deleted`);
       setSelectedCompany(null);
     }
   };
@@ -33,7 +33,7 @@ const Companies = () => {
         onClose={() => setSelectedCompany(null)}
       />
       <div>
-        <h1 className="mb-4 text-xl">Companies</h1>
+        <h1 className="mb-4 text-xl font-semibold">Companies</h1>
         <CompanyTable
           companies={companies}
           handleUpdate={(company: ICompany) => {

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks";
 import { addCompany } from "@/redux/slices/company.slice";
 import { toastSucess } from "@/utils/functions/helper";
+import ErrorMessage from "../errors/ErrorMessage";
 
 type CompanyFormData = yup.InferType<typeof companyValidationSchema>;
 
@@ -44,7 +45,7 @@ const CreateCompanyForm = () => {
         <div>
           <label
             htmlFor="companyName"
-            className="block text-sm font-medium text-gray-700"
+            className="form-label"
           >
             Company Name
           </label>
@@ -52,19 +53,15 @@ const CreateCompanyForm = () => {
             {...register("companyName")}
             type="text"
             id="companyName"
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            className="form-input"
           />
-          {errors.companyName && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.companyName.message}
-            </p>
-          )}
+          <ErrorMessage message={errors.companyName?.message} />
         </div>
 
         <div>
           <label
             htmlFor="logo"
-            className="block text-sm font-medium text-gray-700"
+            className="form-label"
           >
             Logo URL
           </label>
@@ -72,17 +69,15 @@ const CreateCompanyForm = () => {
             {...register("logo")}
             type="text"
             id="logo"
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            className="form-input"
           />
-          {errors.logo && (
-            <p className="text-red-500 text-xs mt-1">{errors.logo.message}</p>
-          )}
+          <ErrorMessage message={errors.logo?.message} />
         </div>
 
         <div>
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
+            className="form-label"
           >
             Email
           </label>
@@ -90,17 +85,15 @@ const CreateCompanyForm = () => {
             {...register("email")}
             type="email"
             id="email"
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            className="form-input"
           />
-          {errors.email && (
-            <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
-          )}
+          <ErrorMessage message={errors.email?.message} />
         </div>
 
         <div>
           <label
             htmlFor="mobileNumber"
-            className="block text-sm font-medium text-gray-700"
+            className="form-label"
           >
             Mobile Number
           </label>
@@ -108,19 +101,15 @@ const CreateCompanyForm = () => {
             {...register("mobileNumber")}
             type="text"
             id="mobileNumber"
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            className="form-input"
           />
-          {errors.mobileNumber && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.mobileNumber.message}
-            </p>
-          )}
+          <ErrorMessage message={errors.mobileNumber?.message} />
         </div>
 
         <div>
           <label
             htmlFor="address"
-            className="block text-sm font-medium text-gray-700"
+            className="form-label"
           >
             Address
           </label>
@@ -128,19 +117,15 @@ const CreateCompanyForm = () => {
             {...register("address")}
             type="text"
             id="address"
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            className="form-input"
           />
-          {errors.address && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.address.message}
-            </p>
-          )}
+          <ErrorMessage message={errors.address?.message} />
         </div>
 
         <div>
           <label
             htmlFor="gst_num"
-            className="block text-sm font-medium text-gray-700"
+            className="form-label"
           >
             GST Number
           </label>
@@ -148,19 +133,16 @@ const CreateCompanyForm = () => {
             {...register("gst_num")}
             type="number"
             id="gst_num"
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            min={0}
+            className="form-input"
           />
-          {errors.gst_num && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.gst_num.message}
-            </p>
-          )}
+          <ErrorMessage message={errors.gst_num?.message} />
         </div>
 
         <div>
           <label
             htmlFor="totalUnpaidBooking"
-            className="block text-sm font-medium text-gray-700"
+            className="form-label"
           >
             Total Unpaid Booking
           </label>
@@ -168,41 +150,34 @@ const CreateCompanyForm = () => {
             {...register("totalUnpaidBooking")}
             type="text"
             id="totalUnpaidBooking"
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            className="form-input"
           />
-          {errors.totalUnpaidBooking && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.totalUnpaidBooking.message}
-            </p>
-          )}
+          <ErrorMessage message={errors.totalUnpaidBooking?.message} />
         </div>
 
         <div>
           <label
             htmlFor="availableCreditLimit"
-            className="block text-sm font-medium text-gray-700"
+            className="form-label"
           >
             Available Credit Limit
           </label>
           <input
             {...register("availableCreditLimit")}
             type="number"
+            min={0}
             id="availableCreditLimit"
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            className="form-input"
           />
-          {errors.availableCreditLimit && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.availableCreditLimit.message}
-            </p>
-          )}
+          <ErrorMessage message={errors.availableCreditLimit?.message} />
         </div>
 
         <div>
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            className="w-full py-2 px-4 bg-slate-600 text-white rounded-md hover:bg-slate-700"
           >
-            Submit
+            Update
           </button>
         </div>
       </form>

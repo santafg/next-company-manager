@@ -22,7 +22,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
     enabled: users === null,
   });
   const { data: companyData, isFetching: companyLoading } = useQuery({
-    queryKey: ["get_company"],
+    queryKey: ["get_companies"],
     queryFn: getCompanies,
     enabled: companies === null,
   });

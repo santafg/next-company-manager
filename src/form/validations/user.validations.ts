@@ -13,12 +13,14 @@ export const userValidationSchema = yup.object({
   mobileNumber: yup.string().required("Mobile number is required"),
   currency: yup.string().required("Currency is required"),
   isActive: yup.boolean().required("Active must be specified"),
-  totalUnpaidBooking: yup.string().required("Total unpaid booking is required"),
+  totalUnpaidBooking: yup
+    .string()
+    .matches(/^[0-9]*\.?[0-9]*$/, "Only numbers allowed")
+    .required("Total unpaid booking is required"),
   availableLimit: yup
     .number()
-    .typeError("error")
     .typeError("Available limit is required")
     .min(0, "Available limit must be at least 0")
     .required("Available limit is required"),
-  companyId: yup.string().required("Company is Required"),
+  companyId: yup.string(),
 });

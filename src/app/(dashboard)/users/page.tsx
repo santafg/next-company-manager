@@ -16,7 +16,7 @@ const Users = () => {
   const handleDeleteUser = () => {
     if (selectedUser) {
       dispatch(deleteUser(selectedUser.id));
-      toastSucess(`${selectedUser.name} Deleted`);
+      toastSucess(`User ${selectedUser.name} Deleted`);
       setSelectedUser(null);
     }
   };
@@ -29,7 +29,7 @@ const Users = () => {
         onClose={() => setSelectedUser(null)}
       />
       <div>
-        <h1 className="mb-4 text-xl">Users</h1>
+        <h1 className="mb-4 text-xl font-semibold">Users</h1>
         <UserTable
           users={users}
           handleUpdate={(user: IUser) => {

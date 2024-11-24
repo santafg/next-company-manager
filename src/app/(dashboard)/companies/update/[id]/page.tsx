@@ -24,7 +24,7 @@ const UpdateCompany = () => {
   const handleDeleteUser = () => {
     if (selectedUser) {
       dispatch(deleteUser(selectedUser.id));
-      toastSucess(`${selectedUser.name} Deleted`);
+      toastSucess(`User ${selectedUser.name} Deleted`);
       setSelectedUser(null);
     }
   };

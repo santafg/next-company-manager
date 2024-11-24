@@ -10,6 +10,7 @@ import { updateUser } from "@/redux/slices/user.slice";
 import { toastSucess } from "@/utils/functions/helper";
 import { useRouter } from "next/navigation";
 import { IUser } from "@/ts/interfaces/user.interface";
+import ErrorMessage from "../errors/ErrorMessage";
 
 type FormData = yup.InferType<typeof userValidationSchema>;
 
@@ -17,7 +18,6 @@ const UpdateUserForm = ({ user }: { user: IUser }) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<FormData>({
     resolver: yupResolver(userValidationSchema),
@@ -38,97 +38,89 @@ const UpdateUserForm = ({ user }: { user: IUser }) => {
         id: user.id,
       })
     );
-    reset();
     toastSucess("User Updated");
     router.push("/users");
   };
 
   return (
     <div className=" p-4">
-      <h1 className="text-2xl font-bold mb-4">Update User</h1>
+      <div className="mb-4 flex justify-between items-center gap-1 md:gap-0 flex-wrap">
+        <h1 className="text-2xl font-bold">Update User</h1>
+        <button
+          onClick={() => router.push("/users")}
+          className="bg-slate-500 rounded text-sm p-4 py-1.5 text-white"
+        >
+          Cancel
+        </button>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-1">Name</label>
+          <label className="form-label">Name</label>
           <input
             {...register("name")}
             type="text"
-            className="w-full p-2 border rounded"
+            className="form-input"
           />
-          {errors.name && (
-            <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>
-          )}
+          <ErrorMessage message={errors.name?.message} />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Avatar URL</label>
+          <label className="form-label">Avatar URL</label>
           <input
             {...register("avatar")}
             type="text"
-            className="w-full p-2 border rounded"
+            className="form-input"
           />
-          {errors.avatar && (
-            <p className="text-red-500 text-xs mt-1">{errors.avatar.message}</p>
-          )}
+          <ErrorMessage message={errors.avatar?.message} />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Email</label>
+          <label className="form-label">Email</label>
           <input
             {...register("email")}
             type="email"
-            className="w-full p-2 border rounded"
+            className="form-input"
             disabled
           />
-          {errors.email && (
-            <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
-          )}
+          <ErrorMessage message={errors.email?.message} />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label className="form-label">
             Mobile Number
           </label>
           <input
             {...register("mobileNumber")}
             type="text"
-            className="w-full p-2 border rounded"
+            className="form-input"
           />
-          {errors.mobileNumber && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.mobileNumber.message}
-            </p>
-          )}
+          <ErrorMessage message={errors.mobileNumber?.message} />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Currency</label>
+          <label className="form-label">Currency</label>
           <input
             {...register("currency")}
             type="text"
-            className="w-full p-2 border rounded"
+            className="form-input"
           />
-          {errors.currency && (
-            <p className="text-red-500 text-xs mt-1">{errors.currency.message}</p>
-          )}
+          <ErrorMessage message={errors.currency?.message} />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Is Active</label>
+          <label className="form-label">Is Active</label>
           <input
             type="checkbox"
             {...register("isActive")}
             className="w-4 h-4 border rounded"
           />
-          {errors.isActive && (
-            <p className="text-red-500 text-xs mt-1">{errors.isActive.message}</p>
-          )}
+          <ErrorMessage message={errors.isActive?.message} />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-1">Company</label>
-
+          <label className="form-label">Company</label>
           <select
             {...register("companyId")}
-            className="w-full p-2 border rounded"
+            className="form-input"
           >
             <option value="">Select Company</option>
             {companies?.map((com) => (
@@ -137,46 +129,37 @@ const UpdateUserForm = ({ user }: { user: IUser }) => {
               </option>
             ))}
           </select>
-          {errors.companyId && (
-            <p className="text-red-500 text-xs mt-1">{errors.companyId.message}</p>
-          )}
+          <ErrorMessage message={errors.companyId?.message} />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label className="form-label">
             Total Unpaid Booking
           </label>
           <input
             {...register("totalUnpaidBooking")}
             type="text"
-            className="w-full p-2 border rounded"
+            className="form-input"
           />
-          {errors.totalUnpaidBooking && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.totalUnpaidBooking.message}
-            </p>
-          )}
+          <ErrorMessage message={errors.totalUnpaidBooking?.message} />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label className="form-label">
             Available Limit
           </label>
           <input
             {...register("availableLimit")}
             type="number"
-            className="w-full p-2 border rounded"
+            min={0}
+            className="form-input"
           />
-          {errors.availableLimit && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.availableLimit.message}
-            </p>
-          )}
+          <ErrorMessage message={errors.availableLimit?.message} />
         </div>
 
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+          className="w-full bg-slate-500 text-white p-2 rounded hover:bg-slate-600"
         >
           Update
         </button>
