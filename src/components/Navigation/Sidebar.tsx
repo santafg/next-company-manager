@@ -10,10 +10,12 @@ const navItems = [
 ];
 
 const Sidebar = ({
+  isMobile,
   setIsSidebarOpen,
   isSidebarOpen,
 }: {
-  isSidebarOpen: boolean;
+  isMobile?: boolean;
+  isSidebarOpen?: boolean;
   setIsSidebarOpen?: Dispatch<SetStateAction<boolean>>;
 }) => {
   const pathname = usePathname();
@@ -22,7 +24,7 @@ const Sidebar = ({
     <>
       <nav
         className={`fixed top-0 w-48 max-h-screen h-full transition-all bg-slate-600 text-white p-5 col-span-2 ${
-          isSidebarOpen ? "left-0" : "-left-48 md:left-0"
+          isMobile && isSidebarOpen ? "left-0" : "-left-48 md:left-0"
         }`}
       >
         <h1 className="text-2xl font-bold mb-8">Dashboard</h1>

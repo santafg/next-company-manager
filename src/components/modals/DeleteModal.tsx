@@ -17,7 +17,7 @@ const DeleteModal = ({
   deleteFun,
   onClose,
 }: IDeleteModalProps) => {
-  const modalRef = useOutsideClick(onClose); // Get the ref from the hook
+  const modalRef = useOutsideClick(onClose);
 
   if (selectedCompany == null && selectedUser == null) return null;
 
@@ -26,7 +26,6 @@ const DeleteModal = ({
       <div
         ref={modalRef}
         className="bg-white w-full max-w-lg p-6 rounded-lg shadow-lg"
-        // onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-xl font-semibold text-center">
           Are you sure you want to delete{" "}

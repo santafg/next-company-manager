@@ -25,7 +25,6 @@ const CreateCompanyForm = () => {
   const dispatch = useAppDispatch();
 
   const onSubmit = (data: CompanyFormData) => {
-    console.log("Form data submitted:", data);
 
     dispatch(
       addCompany({
@@ -43,10 +42,7 @@ const CreateCompanyForm = () => {
       <h1 className="text-2xl font-bold mb-4">Create Company</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
-          <label
-            htmlFor="companyName"
-            className="form-label"
-          >
+          <label htmlFor="companyName" className="form-label">
             Company Name
           </label>
           <input
@@ -59,10 +55,7 @@ const CreateCompanyForm = () => {
         </div>
 
         <div>
-          <label
-            htmlFor="logo"
-            className="form-label"
-          >
+          <label htmlFor="logo" className="form-label">
             Logo URL
           </label>
           <input
@@ -75,10 +68,7 @@ const CreateCompanyForm = () => {
         </div>
 
         <div>
-          <label
-            htmlFor="email"
-            className="form-label"
-          >
+          <label htmlFor="email" className="form-label">
             Email
           </label>
           <input
@@ -91,10 +81,7 @@ const CreateCompanyForm = () => {
         </div>
 
         <div>
-          <label
-            htmlFor="mobileNumber"
-            className="form-label"
-          >
+          <label htmlFor="mobileNumber" className="form-label">
             Mobile Number
           </label>
           <input
@@ -107,10 +94,7 @@ const CreateCompanyForm = () => {
         </div>
 
         <div>
-          <label
-            htmlFor="address"
-            className="form-label"
-          >
+          <label htmlFor="address" className="form-label">
             Address
           </label>
           <input
@@ -123,10 +107,7 @@ const CreateCompanyForm = () => {
         </div>
 
         <div>
-          <label
-            htmlFor="gst_num"
-            className="form-label"
-          >
+          <label htmlFor="gst_num" className="form-label">
             GST Number
           </label>
           <input
@@ -140,10 +121,7 @@ const CreateCompanyForm = () => {
         </div>
 
         <div>
-          <label
-            htmlFor="totalUnpaidBooking"
-            className="form-label"
-          >
+          <label htmlFor="totalUnpaidBooking" className="form-label">
             Total Unpaid Booking
           </label>
           <input
@@ -156,10 +134,7 @@ const CreateCompanyForm = () => {
         </div>
 
         <div>
-          <label
-            htmlFor="availableCreditLimit"
-            className="form-label"
-          >
+          <label htmlFor="availableCreditLimit" className="form-label">
             Available Credit Limit
           </label>
           <input
@@ -177,7 +152,7 @@ const CreateCompanyForm = () => {
             type="submit"
             className="w-full py-2 px-4 bg-slate-600 text-white rounded-md hover:bg-slate-700"
           >
-            Update
+            Submit
           </button>
         </div>
       </form>

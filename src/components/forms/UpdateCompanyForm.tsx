@@ -28,8 +28,6 @@ const UpdateCompanyForm = ({ company }: { company: ICompany }) => {
   const dispatch = useAppDispatch();
 
   const onSubmit = (data: CompanyFormData) => {
-    console.log("Form data submitted:", data);
-
     dispatch(
       updateCompany({
         ...data,
@@ -53,10 +51,7 @@ const UpdateCompanyForm = ({ company }: { company: ICompany }) => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
-          <label
-            htmlFor="companyName"
-            className="form-label"
-          >
+          <label htmlFor="companyName" className="form-label">
             Company Name
           </label>
           <input
@@ -69,10 +64,7 @@ const UpdateCompanyForm = ({ company }: { company: ICompany }) => {
         </div>
 
         <div>
-          <label
-            htmlFor="logo"
-            className="form-label"
-          >
+          <label htmlFor="logo" className="form-label">
             Logo URL
           </label>
           <input
@@ -85,10 +77,7 @@ const UpdateCompanyForm = ({ company }: { company: ICompany }) => {
         </div>
 
         <div>
-          <label
-            htmlFor="email"
-            className="form-label"
-          >
+          <label htmlFor="email" className="form-label">
             Email
           </label>
           <input
@@ -101,10 +90,7 @@ const UpdateCompanyForm = ({ company }: { company: ICompany }) => {
         </div>
 
         <div>
-          <label
-            htmlFor="mobileNumber"
-            className="form-label"
-          >
+          <label htmlFor="mobileNumber" className="form-label">
             Mobile Number
           </label>
           <input
@@ -117,10 +103,7 @@ const UpdateCompanyForm = ({ company }: { company: ICompany }) => {
         </div>
 
         <div>
-          <label
-            htmlFor="address"
-            className="form-label"
-          >
+          <label htmlFor="address" className="form-label">
             Address
           </label>
           <input
@@ -133,10 +116,7 @@ const UpdateCompanyForm = ({ company }: { company: ICompany }) => {
         </div>
 
         <div>
-          <label
-            htmlFor="gst_num"
-            className="form-label"
-          >
+          <label htmlFor="gst_num" className="form-label">
             GST Number
           </label>
           <input
@@ -150,10 +130,7 @@ const UpdateCompanyForm = ({ company }: { company: ICompany }) => {
         </div>
 
         <div>
-          <label
-            htmlFor="totalUnpaidBooking"
-            className="form-label"
-          >
+          <label htmlFor="totalUnpaidBooking" className="form-label">
             Total Unpaid Booking
           </label>
           <input
@@ -166,10 +143,7 @@ const UpdateCompanyForm = ({ company }: { company: ICompany }) => {
         </div>
 
         <div>
-          <label
-            htmlFor="availableCreditLimit"
-            className="form-label"
-          >
+          <label htmlFor="availableCreditLimit" className="form-label">
             Available Credit Limit
           </label>
           <input

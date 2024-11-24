@@ -1,7 +1,6 @@
 import { ICompany } from "@/ts/interfaces/company.interfaces";
 import Image from "next/image";
 import React from "react";
-// import { FallbackImage } from "../image/FallbackImage";
 
 interface ICompanyTableProps {
   companies: ICompany[] | null;

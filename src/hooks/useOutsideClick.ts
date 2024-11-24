@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 
-// Custom hook for detecting outside click
 const useOutsideClick = (onClose: () => void) => {
   const ref = useRef<HTMLDivElement>(null);
 
